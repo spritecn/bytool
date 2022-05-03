@@ -34,6 +34,7 @@ import static spritecn.github.bytool.requestslib.StatusCodes.NO_CONTENT;
  *
  * @author Liu Dong
  */
+@SuppressWarnings("unused")
 public class RawResponse extends AbstractResponse implements AutoCloseable {
     private final String method;
     private final String statusLine;
@@ -107,6 +108,10 @@ public class RawResponse extends AbstractResponse implements AutoCloseable {
         return new RawResponse(method, url, statusCode, statusLine, cookies, headers, body, charset, decompress);
     }
 
+    public String toText(){
+        return readToText();
+    }
+
     /**
      * Read response body to string. return empty string if response has no body
      */
@@ -127,6 +132,10 @@ public class RawResponse extends AbstractResponse implements AutoCloseable {
      */
     public Response<String> toTextResponse() {
         return new Response<>(this.url, this.statusCode, this.cookies, this.headers, readToText());
+    }
+
+    public byte[] toBytes(){
+        return readToBytes();
     }
 
     /**
@@ -182,6 +191,10 @@ public class RawResponse extends AbstractResponse implements AutoCloseable {
         }
     }
 
+    public <T> T toJson(Type type) {
+        return readToJson(type);
+    }
+
     /**
      * Deserialize response content as json
      *
@@ -191,12 +204,20 @@ public class RawResponse extends AbstractResponse implements AutoCloseable {
         return readToJson(typeInfer.getType());
     }
 
+    public <T> T toJson(TypeInfer<T> typeInfer){
+        return readToJson(typeInfer);
+    }
+
     /**
      * Deserialize response content as json
      *
      * @return null if json value is null or empty
      */
     public <T> T readToJson(Class<T> cls) {
+        return readToJson((Type) cls);
+    }
+
+    public <T> T toJson(Class<T> cls) {
         return readToJson((Type) cls);
     }
 
