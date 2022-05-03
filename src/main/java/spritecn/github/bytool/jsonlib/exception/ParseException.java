@@ -1,4 +1,4 @@
-package spritecn.github.bytool.jsonUtil.exception;
+package spritecn.github.bytool.jsonlib.exception;
 
 import java.io.PrintStream;
 import java.io.PrintWriter;

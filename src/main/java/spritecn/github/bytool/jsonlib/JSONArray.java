@@ -1,4 +1,4 @@
-package spritecn.github.bytool.jsonUtil;
+package spritecn.github.bytool.jsonlib;
 
 
 import spritecn.github.bytool.JSON;
@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.*;
 import java.util.function.UnaryOperator;
-import static spritecn.github.bytool.jsonUtil.TypeCastUtil.*;
+import static spritecn.github.bytool.jsonlib.TypeCastUtil.*;
 
 
 
