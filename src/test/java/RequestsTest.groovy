@@ -11,7 +11,8 @@ class RequestsTest extends Specification {
                       "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
                       "accept-encoding":"gzip, deflate"
         ]
-        def response = Requests.get("https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=111").headers(header).send()
+        Requests.get("https://www.baidu.com/s").headers(header).params([wd:"111"]).send().toText()
+        println(Requests.post("https://getman.cn/echo").send().toText())
 
     }
 
